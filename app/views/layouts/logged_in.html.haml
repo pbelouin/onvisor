@@ -1,0 +1,43 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, shrink-to-fit=no, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %title onvisor logged in
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+  %body
+    #wrapper
+      / Sidebar
+      #sidebar-wrapper.toggled
+        %ul.sidebar-nav
+          %li.sidebar-brand
+            %a{:href => "#"}
+              Onvisor
+          %li
+            = active_link_to "Dashboard", home_path, active: /^\/home/
+          %li
+            %a{:href => "#"} Inbox
+          %li
+            %a{:href => "#"} Requests
+          %li
+            %a{:href => "#"} Vault
+          %li
+            = active_link_to "My Account", [:edit, current_user]
+          %li
+            = link_to "Sign Out", destroy_user_session_path, method: :delete
+      / /#sidebar-wrapper
+      / Page Content
+      #page-content-wrapper
+        .container-fluid
+          .row
+            .col-lg-12
+              = flash_messages
+              = yield
+      / /#page-content-wrapper
+    / /#wrapper

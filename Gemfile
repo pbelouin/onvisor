@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-linkedin-oauth2'
 gem "linkedin-oauth2", "~> 1.0"
+gem 'active_link_to'
 
 group :development, :test do
   gem 'byebug', platform: :mri

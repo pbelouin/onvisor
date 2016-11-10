@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+
+  layout -> {'logged_in'}
+
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+
 
   # GET /users
   def index
@@ -34,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to home_path, notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -54,6 +59,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {})
+      params.fetch(:user, {}).permit(:name, :email, :role)
     end
 end
